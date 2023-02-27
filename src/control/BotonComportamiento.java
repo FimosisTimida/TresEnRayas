@@ -46,23 +46,27 @@ public class BotonComportamiento implements ActionListener {
 					}
 					
 				}else if(tableroLleno){
-					if(casillaOwner(boton.getCoordenada()) && xyAux == null) {
+					if(casillaPropiaLibre(boton) && xyAux == null) {
 						limpiarBoton(boton);
 						ocuparPosicionEnTablero(boton, 0);
 						// Coordenadas para ver si son vecinos a la casilla elegida
 						xyAux = boton.getCoordenada();
 						
-					}else if(xyAux!= null) {
-						if( eligioLibreVecina(boton)) {
+					}else if(xyAux!= null ) {
+						if( isVecina(boton)) {
+							if(isFree(boton) && !casillaOwner(boton)) {
 						
-							hacerTurno(boton);
-							xyAux=null;
-							
-							if(comprobarGanador()) {
-								msgEnhorabuenaLblEstado(playerNumber());
+								hacerTurno(boton);
+								xyAux=null;
+								
+								if(comprobarGanador()) {
+									msgEnhorabuenaLblEstado(playerNumber());
+								}else {
+									gest.incrementarNumeroJugada();
+									updateLblEstadoNextPlayer(playerNumber());
+								}
 							}else {
-								gest.incrementarNumeroJugada();
-								updateLblEstadoNextPlayer(playerNumber());
+								msgErrorFreePlaceLblEstado(playerNumber());
 							}
 						}else {
 							msgErrorVecinoLblEstado(playerNumber());
@@ -80,21 +84,22 @@ public class BotonComportamiento implements ActionListener {
 	}
 	
 
-	private boolean eligioLibreVecina(MyButton boton) {
-		return isVecina(boton.getCoordenada()) && !casillaOwner(boton.getCoordenada());
+	private boolean casillaPropiaLibre(MyButton boton) {
+		
+		return casillaOwner(boton) && isBloqueada(boton.getCoordenada());
 	}
 
-	private boolean isBloqueada() {
-		return gest.getTablero().comprobarBloqueada(xyAux);
+	private boolean isBloqueada(Coordenada coordenada) {
+		return gest.getTablero().comprobarBloqueada(coordenada);
 	}
 	
-	private boolean isVecina(Coordenada coordenada) {
-		return gest.getTablero().comprobarVecina(coordenada,xyAux);
+	private boolean isVecina(MyButton boton) {
+		return gest.getTablero().comprobarVecina(boton.getCoordenada(),xyAux);
 	}
 
-	private boolean casillaOwner(Coordenada coordenada) {
+	private boolean casillaOwner(MyButton boton) {
 		
-		return gest.getTablero().comprobarPropiedad(coordenada, gest.verTurno());
+		return gest.getTablero().comprobarPropiedad(boton.getCoordenada(), gest.verTurno());
 	}
 
 	private boolean comprobarGanador() {
@@ -161,6 +166,11 @@ public class BotonComportamiento implements ActionListener {
 	
 	private void msgErrorVecinoLblEstado(int playerNumber) {
 		lblestado.setText("Error. No es casilla vecina Jugador "+playerNumber);
+		
+	}
+	
+	private void msgErrorFreePlaceLblEstado(int playerNumber) {
+		lblestado.setText("Error. No es casilla libre Jugador "+playerNumber);
 		
 	}
 }
