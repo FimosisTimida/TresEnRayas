@@ -38,15 +38,29 @@ public class FrameCompuesto extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[271px]", "[155px][13px][][][][]"));
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.columnWidths = new int[]{307, 0};
+		gbl_contentPane.rowHeights = new int[]{245, 13, 0};
+		gbl_contentPane.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		contentPane.setLayout(gbl_contentPane);
 		
 		panel = new PanelBotonera();
 		FlowLayout fl_panel = (FlowLayout) panel.getLayout();
 		fl_panel.setVgap(1);
 		fl_panel.setHgap(1);
-		contentPane.add(panel, "cell 0 0 1 5,grow");
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.insets = new Insets(0, 0, 5, 0);
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 0;
+		contentPane.add(panel, gbc_panel);
 		panel.getBoton(1,1).setText("X");
-		contentPane.add(lblEstado, "cell 0 5,grow");
+		GridBagConstraints gbc_lblEstado = new GridBagConstraints();
+		gbc_lblEstado.fill = GridBagConstraints.BOTH;
+		gbc_lblEstado.gridx = 0;
+		gbc_lblEstado.gridy = 1;
+		contentPane.add(lblEstado, gbc_lblEstado);
 	}
 
 	protected PanelBotonera getPanel() {
