@@ -12,7 +12,7 @@ import view.FrameCompuesto;
 
 public class ParaFrameCompuesto extends FrameCompuesto{
 
-	BotonComportamiento btnComportamiento;
+	private BotonComportamiento btnComportamiento;
 	
 	public ParaFrameCompuesto() {
 		super();
