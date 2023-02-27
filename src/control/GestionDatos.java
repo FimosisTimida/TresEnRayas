@@ -33,8 +33,19 @@ public class GestionDatos {
 		return tablero.comprobarTresEnRaya();
 	}
 	
+	/**
+	 * Metodo que no sirve aqui, entendi mal el ennunciado 
+	 * y ahora terminando el ejercicio lo entendi mejor
+	 * no tiene que llenarse el tablero,
+	 * si no que cada jugador oslo pone 3 fichas
+	 * @return
+	 */
 	public boolean isTableroFull() {
 		return numerojugada >= tablero.volTablero();
+	}
+
+	public int getNumerojugada() {
+		return numerojugada;
 	}
 	
 }
