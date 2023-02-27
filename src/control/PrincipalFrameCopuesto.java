@@ -1,4 +1,4 @@
-package modelo;
+package control;
 
 import java.awt.EventQueue;
 
