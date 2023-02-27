@@ -105,6 +105,24 @@ public class Tablero {
 		return false;
 	}
 	
+	/**
+	 * verifica que la casilla adyacente es vecina
+	 * 
+	 * @return true si encuentra al menos una casilla contigua false si la
+	 *         casilla no es vecina.
+	 */
+	public boolean comprobarVecina(Coordenada ccoodenada1, Coordenada coordenada2) {
+		int i =ccoodenada1.getX();
+		int j = ccoodenada1.getY();
+		int x = coordenada2.getX();
+		int y=coordenada2.getY();
+		
+		if((x==i+1 || x==i-1 || x==i) && (y == j+1 || y== j-1 || y==j)) {
+			return true;
+		}
+		return false;
+	}
+	
 	public int volTablero() {
 		return this.tablero.length*this.tablero[0].length;
 	}
