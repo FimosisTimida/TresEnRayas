@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modelo.Coordenada;
+import modelo.MyButton;
 
 import javax.swing.JButton;
 import java.awt.GridLayout;
@@ -43,16 +43,16 @@ public class MuchosBotones extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		for (int i = 0; i < 3; i++) {
 			for (int j= 0; j < 3; j++) {
-			MyButton myButton = new MyButton(new Coordenada(i, j));
-			myButton.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-				System.out.println("hola soy "+((MyButton)e.getSource()).getCoordenada().toString());
+				MyButton myButton = new MyButton(new Coordenada(i, j));
+				myButton.addActionListener(new ActionListener() {
 					
-				}
-			});
-			contentPane.add(myButton);
+					@Override
+					public void actionPerformed(ActionEvent e) {
+					System.out.println("hola soy "+((MyButton)e.getSource()).getCoordenada().toString());
+						
+					}
+				});
+				contentPane.add(myButton);
 			}
 		}
 

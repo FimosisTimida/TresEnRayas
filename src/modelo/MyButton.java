@@ -1,8 +1,8 @@
-package boceto;
+package modelo;
 
 import javax.swing.JButton;
 
-import modelo.Coordenada;
+import boceto.Coordenada;
 
 public class MyButton extends JButton {
 	private Coordenada coordenada;

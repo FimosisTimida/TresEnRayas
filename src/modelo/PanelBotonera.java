@@ -1,12 +1,16 @@
 package modelo;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import boceto.MyButton;
+import boceto.Coordenada;
+import control.BotonComportamiento;
+import control.ParaFrameCompuesto;
 
 public class PanelBotonera extends JPanel {
 
@@ -18,15 +22,13 @@ public class PanelBotonera extends JPanel {
 	}
 
 	private void crearBotones() {
+		//BotonComportamiento btnComportamiento = new BotonComportamiento();
 		for (int i = 0; i < 3; i++) {
 			for (int j= 0; j < 3; j++) {
 				botonera[i][j] = new MyButton(new Coordenada(i, j));
-				botonera[i][j] .addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-				System.out.println("hola soy "+((MyButton)e.getSource()).getCoordenada().toString());
-				}
-			});
+				botonera[i][j].setForeground(new Color(255, 105, 180));
+				botonera[i][j].setFont(new Font("Sitka Subheading", Font.BOLD, 46));
+				//botonera[i][j] .addActionListener(btnComportamiento);
 			this.add(botonera[i][j] );
 			}
 		}
@@ -36,6 +38,12 @@ public class PanelBotonera extends JPanel {
 	public MyButton getBoton(int i, int j) {
 		return botonera[i][j];
 	}
-
+	
+	public int getLengthRow() {
+		return botonera.length;
+	}
+	public int getLengthColum() {
+		return botonera[0].length;
+	}
 	
 }
